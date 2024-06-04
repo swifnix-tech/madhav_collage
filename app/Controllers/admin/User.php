@@ -97,6 +97,15 @@ class User extends BaseController
     return view(ADMIN."user/index", $data);
    } 
 
+  
+   public function edit_user($id){
+     echo "saurbh";  
+    
+
+   }
+
+
+
 }
 
 
