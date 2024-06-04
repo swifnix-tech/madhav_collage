@@ -22,8 +22,9 @@ function getAppDetails($rows ,$filds){
 function get_Permission($email , $password){
     $db = db_connect();
     
-   if($email && $password == null){
-      return throw new Exception("User Permission not found Wrong email and Password");
+   if($email && $password ==null){
+      throw new Exception("User Permission not found Wrong emailPassword");
+      return;
    }
    // fetching user info 
    $row = $db->table("user")->where("email",$email)->get()->getResultArray();
