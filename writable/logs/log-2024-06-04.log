@@ -333,3 +333,134 @@ INFO - 2024-06-04 09:44:43 --> Session: Class initialized using 'CodeIgniter\Ses
 INFO - 2024-06-04 09:44:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2024-06-04 09:44:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2024-06-04 09:44:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-04 10:11:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-06-04 10:11:44 --> Error connecting to the database: mysqli_sql_exception: Unknown database 'madhav_collage' in C:\xampp2\htdocs\madhav_collage\system\Database\MySQLi\Connection.php:186
+Stack trace:
+#0 C:\xampp2\htdocs\madhav_collage\system\Database\MySQLi\Connection.php(186): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'madhav_collage', 3306, '', 0)
+#1 C:\xampp2\htdocs\madhav_collage\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp2\htdocs\madhav_collage\system\Database\BaseConnection.php(604): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp2\htdocs\madhav_collage\system\Database\BaseBuilder.php(1629): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp2\htdocs\madhav_collage\app\Helpers\main_helper.php(12): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp2\htdocs\madhav_collage\app\Views\login.php(24): getAppDetails(1, 'name')
+#6 C:\xampp2\htdocs\madhav_collage\system\View\View.php(234): include('C:\\xampp2\\htdoc...')
+#7 C:\xampp2\htdocs\madhav_collage\system\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#8 C:\xampp2\htdocs\madhav_collage\system\Common.php(1171): CodeIgniter\View\View->render('login', Array, true)
+#9 C:\xampp2\htdocs\madhav_collage\app\Controllers\Auth.php(22): view('login')
+#10 C:\xampp2\htdocs\madhav_collage\system\CodeIgniter.php(933): App\Controllers\Auth->index()
+#11 C:\xampp2\htdocs\madhav_collage\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#12 C:\xampp2\htdocs\madhav_collage\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\xampp2\htdocs\madhav_collage\system\Boot.php(312): CodeIgniter\CodeIgniter->run()
+#14 C:\xampp2\htdocs\madhav_collage\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#15 C:\xampp2\htdocs\madhav_collage\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#16 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown database 'madhav_collage' in C:\xampp2\htdocs\madhav_collage\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\xampp2\htdocs\madhav_collage\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp2\htdocs\madhav_collage\system\Database\BaseConnection.php(604): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp2\htdocs\madhav_collage\system\Database\BaseBuilder.php(1629): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\xampp2\htdocs\madhav_collage\app\Helpers\main_helper.php(12): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xampp2\htdocs\madhav_collage\app\Views\login.php(24): getAppDetails(1, 'name')
+#5 C:\xampp2\htdocs\madhav_collage\system\View\View.php(234): include('C:\\xampp2\\htdoc...')
+#6 C:\xampp2\htdocs\madhav_collage\system\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\xampp2\htdocs\madhav_collage\system\Common.php(1171): CodeIgniter\View\View->render('login', Array, true)
+#8 C:\xampp2\htdocs\madhav_collage\app\Controllers\Auth.php(22): view('login')
+#9 C:\xampp2\htdocs\madhav_collage\system\CodeIgniter.php(933): App\Controllers\Auth->index()
+#10 C:\xampp2\htdocs\madhav_collage\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#11 C:\xampp2\htdocs\madhav_collage\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp2\htdocs\madhav_collage\system\Boot.php(312): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp2\htdocs\madhav_collage\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp2\htdocs\madhav_collage\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2024-06-04 10:11:44 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Unknown database 'madhav_collage'
+[Method: GET, Route: login]
+in SYSTEMPATH\Database\BaseConnection.php on line 457.
+ 1 SYSTEMPATH\Database\BaseConnection.php(604): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1629): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `setting`
+WHERE `id` = :id:', [...], false)
+ 3 APPPATH\Helpers\main_helper.php(12): CodeIgniter\Database\BaseBuilder->get()
+ 4 APPPATH\Views\login.php(24): getAppDetails(1, 'name')
+ 5 SYSTEMPATH\View\View.php(234): include('C:\\xampp2\\htdocs\\madhav_collage\\app\\Views\\login.php')
+ 6 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('login', [], true)
+ 8 APPPATH\Controllers\Auth.php(22): view('login')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->index()
+10 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+11 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-06-04 10:34:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-06-04 10:34:58 --> Error connecting to the database: mysqli_sql_exception: Unknown database 'madhav_collage' in C:\xampp2\htdocs\madhav_collage\system\Database\MySQLi\Connection.php:186
+Stack trace:
+#0 C:\xampp2\htdocs\madhav_collage\system\Database\MySQLi\Connection.php(186): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'madhav_collage', 3306, '', 0)
+#1 C:\xampp2\htdocs\madhav_collage\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp2\htdocs\madhav_collage\system\Database\BaseConnection.php(604): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp2\htdocs\madhav_collage\system\Database\BaseBuilder.php(1629): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp2\htdocs\madhav_collage\app\Helpers\main_helper.php(12): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp2\htdocs\madhav_collage\app\Views\login.php(24): getAppDetails(1, 'name')
+#6 C:\xampp2\htdocs\madhav_collage\system\View\View.php(234): include('C:\\xampp2\\htdoc...')
+#7 C:\xampp2\htdocs\madhav_collage\system\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#8 C:\xampp2\htdocs\madhav_collage\system\Common.php(1171): CodeIgniter\View\View->render('login', Array, true)
+#9 C:\xampp2\htdocs\madhav_collage\app\Controllers\Auth.php(22): view('login')
+#10 C:\xampp2\htdocs\madhav_collage\system\CodeIgniter.php(933): App\Controllers\Auth->index()
+#11 C:\xampp2\htdocs\madhav_collage\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#12 C:\xampp2\htdocs\madhav_collage\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\xampp2\htdocs\madhav_collage\system\Boot.php(312): CodeIgniter\CodeIgniter->run()
+#14 C:\xampp2\htdocs\madhav_collage\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#15 C:\xampp2\htdocs\madhav_collage\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#16 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown database 'madhav_collage' in C:\xampp2\htdocs\madhav_collage\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\xampp2\htdocs\madhav_collage\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp2\htdocs\madhav_collage\system\Database\BaseConnection.php(604): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp2\htdocs\madhav_collage\system\Database\BaseBuilder.php(1629): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\xampp2\htdocs\madhav_collage\app\Helpers\main_helper.php(12): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xampp2\htdocs\madhav_collage\app\Views\login.php(24): getAppDetails(1, 'name')
+#5 C:\xampp2\htdocs\madhav_collage\system\View\View.php(234): include('C:\\xampp2\\htdoc...')
+#6 C:\xampp2\htdocs\madhav_collage\system\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\xampp2\htdocs\madhav_collage\system\Common.php(1171): CodeIgniter\View\View->render('login', Array, true)
+#8 C:\xampp2\htdocs\madhav_collage\app\Controllers\Auth.php(22): view('login')
+#9 C:\xampp2\htdocs\madhav_collage\system\CodeIgniter.php(933): App\Controllers\Auth->index()
+#10 C:\xampp2\htdocs\madhav_collage\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#11 C:\xampp2\htdocs\madhav_collage\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp2\htdocs\madhav_collage\system\Boot.php(312): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp2\htdocs\madhav_collage\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp2\htdocs\madhav_collage\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2024-06-04 10:34:58 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Unknown database 'madhav_collage'
+[Method: GET, Route: login]
+in SYSTEMPATH\Database\BaseConnection.php on line 457.
+ 1 SYSTEMPATH\Database\BaseConnection.php(604): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1629): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `setting`
+WHERE `id` = :id:', [...], false)
+ 3 APPPATH\Helpers\main_helper.php(12): CodeIgniter\Database\BaseBuilder->get()
+ 4 APPPATH\Views\login.php(24): getAppDetails(1, 'name')
+ 5 SYSTEMPATH\View\View.php(234): include('C:\\xampp2\\htdocs\\madhav_collage\\app\\Views\\login.php')
+ 6 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('login', [], true)
+ 8 APPPATH\Controllers\Auth.php(22): view('login')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->index()
+10 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+11 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-06-04 11:05:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-04 11:08:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-04 11:10:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-04 11:11:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-04 11:11:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-04 11:11:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-04 11:11:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-04 11:13:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-04 11:13:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-04 11:14:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-04 11:14:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-04 11:14:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-04 11:16:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

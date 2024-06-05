@@ -152,7 +152,7 @@
 
         <footer class="app-footer"> <!--begin::To the end-->
 
-                <a href="https://madhavcollege.edu.in/" class="text-decoration-none">Madhav Collage</a>.
+                <a href="https://madhavcollege.edu.in/" class="text-decoration-none">Madhav College</a>.
             </strong>
             All rights reserved.
             <!--end::Copyright-->

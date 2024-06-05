@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>AdminLTE 4 | Login Page v2</title>
+    <title><?=getAppDetails(1,"name")?> | Login Page </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="title" content="AdminLTE 4 | Login Page v2">
     <meta name="author" content="ColorlibHQ">
@@ -26,7 +26,7 @@
                  </div>
             <div class="card-body login-card-body">
                 <!-- <p class="login-box-msg">Sign in to start your session</p> -->
-                <form action="<?=base_url('login_porcess    ')?>" method="post">
+                <form action="<?=base_url('login_porcess')?>" method="post">
                 <?=csrf_field()?>
                     <div class="input-group mb-1">
                         <div class="form-floating"> <input id="loginEmail" type="email" class="form-control" name="email"  autocomplete="email" value="<?=set_value("email")?>" placeholder=""> <label for="loginEmail">Email</label> </div>
