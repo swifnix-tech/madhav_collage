@@ -30,7 +30,14 @@ $routes->group("admin",["filter" => "auth"] , function($routes){
     $routes->get( 'users', 'admin\User::index',["filter" => "auth"]);
     $routes->post( 'save_user', 'admin\User::save_user',["filter" => "auth"]);
     $routes->get( 'user_table', 'admin\User::User_table',["filter" => "auth"]);
-    $routes->get( 'edit_user/(:num)', 'admin\User::/$1',["filter" => "auth"]);
+    $routes->get( 'edit_user/(:num)', 'admin\User::edit_user/$1',["filter" => "auth"]);
+    $routes->get( 'blockuser', 'admin\User::block_user',["filter" => "auth"]);
+    $routes->post( 'edit_save/(:num)', 'admin\User::edit_save/$1',["filter" => "auth"]);
+    
+
+    // degree 
+    $routes->get("degree",'admin\Degree::index',["filter" => "auth"]);
+    $routes->post("save_degree",'admin\Degree::saveing_degree',["filter" => "auth"]);
 
 });
 

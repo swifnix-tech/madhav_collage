@@ -13,10 +13,13 @@
     <link rel="stylesheet" href="<?=base_url('assests/')?>dist/css/adminlte.css"><!--end::Required Plugin(AdminLTE)--><!-- apexcharts -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.css" integrity="sha256-4MX+61mt9NVvvuPjUWdUdyfZfxSB1/Rf9WtqRHgG5S0=" crossorigin="anonymous"><!-- jsvectormap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/css/jsvectormap.min.css" integrity="sha256-+uGLJmmTKOqBr+2E6KDYs/NRsHxSkONXFHUL0fy2O/4=" crossorigin="anonymous">
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="icon" href="<?=base_url(getAppDetails(1,"logo"))?>" type="image/gif" sizes="16x16">
     <link rel="stylesheet" href="<?=base_url('assests/')?>custome/custome.css">
+    <script src="<?=base_url("assests/iziToas/dist/js/iziToast.min")?>"> </script>
     <!-- css of iziToast -->
+    <link rel="stylesheet" href="<?=base_url("assests/datepicker/jquery-ui.css")?>">
+    <script src="<?=base_url("assests/datepicker/jquery-ui.js")?>"></script>
    <link rel="stylesheet" href="<?=base_url("assests/iziToas/dist/css/iziToast.min.css")?>">
 </head> <!--end::Head--> <!--begin::Body-->
 
@@ -123,6 +126,7 @@
                         </li>
 
 
+
                         <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-person-circle"></i>
                                 <p>
                                    Users 
@@ -140,7 +144,10 @@
                             </ul>
                         </li>
 
-
+                        <li class="nav-item menu-open"> <a href="<?=base_url(ADMIN.'degree')?>" class="nav-link active"> <i class="nav-icon bi bi-speedometer"></i>
+                             <p>Degree</p>
+                            </a>
+                        </li>
                         
                     </ul> <!--end::Sidebar Menu-->
                 </nav>
@@ -262,7 +269,7 @@
         sales_chart.render();
     </script> <!-- jsvectormap -->
 
-    <script src="<?=base_url("assests/iziToas/dist/js/iziToast.min")?>"> </script>
+    
      <script src="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/js/jsvectormap.min.js" integrity="sha256-/t1nN2956BT869E6H4V1dnt0X5pAQHPytli+1nTZm2Y=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/maps/world.js" integrity="sha256-XPpPaZlU8S/HWf7FZLAncLg2SAkP8ScUTII89x9D3lY=" crossorigin="anonymous"></script> <!-- jsvectormap -->
   
@@ -389,6 +396,31 @@
         });
     </script>
 <?php endif; ?>
+<?php 
+$arra = array(); 
+$validation = session()->getFlashdata("validation");
+
+if ($validation && is_object($validation)) {
+    $errors = $validation->getErrors();
+    if (is_array($errors)) {
+        foreach ($errors as $key => $error) {
+            $arra[$key] = $error;
+        }
+    }
+}
+?>
+
+<?php if (!empty($arra)): ?>
+    <script>
+        iziToast.error({
+            message: '<?= implode("<br>", array_map('esc', $arra)) ?>',
+            position: 'topRight',
+            timeout: 2000 
+        });
+    </script>
+<?php endif; ?>
+
+
 
 
         <?php if (session()->getFlashdata('error')): ?>
@@ -408,7 +440,12 @@
             });
             </script>
         <?php endif; ?>
+<script>
+  $( function() {
+    $( "#cutomedate" ).datepicker();
+  } );
 
+</script>
 
 </body><!--end::Body-->
 

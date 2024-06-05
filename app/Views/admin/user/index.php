@@ -37,7 +37,7 @@
                     <!-- Default box -->
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">  <?= $page_title ?></h3>
+                            <h3 class="card-title"><?= $page_title ?></h3>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse" title="Collapse">
                                     <i data-lte-icon="expand" class="bi bi-plus-lg"></i>
@@ -49,39 +49,41 @@
                             </div>
                         </div>
                         <div class="card-body">
-                        <div class="box-body table-responsive overflow-visible-lg">
-                        
-                        <div >
-                            <table class="table table-hover table-striped table-bordered example">
-                                <thead>
-                                    <tr>
-                                        <th>Username</th>
-                                        <th>Email</th>
-                                        <th>Mobile</th>
-                                        <th>Created Date</th>
-                                        <th>Action</th>
-
-                                    </tr> 
-                                </thead>
-                                <tbody>
-                                    <?php foreach($userlist as $key=>$row): ?>
-                                       <tr> 
-
-                                    <td><?=($key+1)?></td>
-                                    <td><?=$row['username']?></td>
-                                    <td><?=$row['email']?></td>
-                                    <td><?=$row['mobile']?></td>
-                                    <td><?=$row['created_date']?></td>
-                                    <td>
-                                      <a href="<?=base_url(ADMIN,"/user_edit/$row[id]")?>" class="btn btn-success">Edit</a>
-                                      <a href="<?=base_url(ADMIN,"/userdelete/$row[id]")?>" class="btn btn-danger">Delete</a>
-                                   </td>
-                                    </tr>
-                                    <?php endforeach;?>
-                                </tbody>
-                            </table>
+                            <div class="box-body table-responsive overflow-visible-lg">
+                                <div>
+                                    <table class="table table-hover table-striped table-bordered example">
+                                        <thead>
+                                            <tr>
+                                                <th>id</th>
+                                                <th>Username</th>
+                                                <th>Email</th>
+                                                <th>Mobile</th>
+                                                <th>Created Date</th>
+                                                <th>Action</th>
+                                            </tr> 
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach($userlist as $key=>$row): ?>
+                                                <tr> 
+                                                    <td><?=($key+1)?></td>
+                                                    <td><?=$row['username']?></td>
+                                                    <td><?=$row['email']?></td>
+                                                    <td><?=$row['mobile']?></td>
+                                                    <td><?=$row['created_date']?></td>
+                                                    <td>
+                                                        <a href="<?=base_url(ADMIN."/edit_user/$row[id]")?>" class="btn btn-primary">Edit</a>
+                                                        <?php if($row['status'] == "1"){ ?>
+                                                            <button type="button" data-id="<?=$row['id']?>" class="btn btn-success delete-button">Permitted</button>
+                                                        <?php } else { ?>
+                                                            <button type="button" data-id="<?=$row['id']?>" class="btn btn-danger delete-button">Blocked</button>
+                                                        <?php } ?>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach;?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -96,4 +98,40 @@
 </main>
 <!--end::App Main-->
 
+<!-- Include jQuery -->
+
+<script>
+$(document).ready(function() {
+    $('.delete-button').on('click', function() {
+        var item = $(this).closest('tr');
+        var id = $(this).data('id');
+
+        if (confirm('Are you sure you want to Block this User?')) {
+            $.ajax({
+                url: '<?= base_url(ADMIN . "blockuser") ?>',
+                type: 'GET',
+                data: {
+                    id:id 
+                },
+                dataType:"json",
+                success: function(result) {
+                   
+                    if (result.status = "success") {
+                        alert(result.message);
+                        setTimeout(function (param) { 
+                            location.reload();
+                         } ,1000)
+                    } else {
+                     
+                    }
+                },
+                error: function(xhr, status, error) {
+                    alert('Failed to block user.');
+                }
+            });
+        }
+    });
+});
+
+</script>
 <?= $this->endSection() ?>

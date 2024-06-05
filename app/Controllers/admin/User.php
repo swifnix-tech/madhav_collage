@@ -80,7 +80,7 @@ class User extends BaseController
         $id  =   $this->usermodel->getInsertID();
         // seting permission to the user 
         if(setUserPersmissions($seletecd_role,$id)){
-            return redirect()->to('users')->with('success', ' '.$message.' Successfully Created');        
+            return redirect()->to('user_table')->with('success', ' '.$message.' Successfully Created');        
          }
        }
 
@@ -92,19 +92,94 @@ class User extends BaseController
     
    public function User_table(){
     $data['page_title'] = "User List";
-    $all  =  $this->usermodel->findAll();
+    $all  =  $this->usermodel->where("id !=",1)->find();
     $data['userlist'] = $all;
     return view(ADMIN."user/index", $data);
    } 
 
   
    public function edit_user($id){
-     echo "saurbh";  
-    
+    $data['page_title'] = "User Update";
+     $row  =  $this->usermodel->find($id);
+     if($row !== null){
+        
+        $data['user'] = $row;
 
+        return view(ADMIN."user/update_user",$data);
+     }
+     session()->setFlashdata('error', 'User not found');
+     return view(ADMIN.'/user/index',$data);
    }
+  
+  public function edit_save($id){
+
+       $this->validation->setRules([
+            'username' => 'required',
+            'email' => 'required|valid_email',
+            'mobile' => 'required|numeric|max_length[11]',
+        ]);
+
+        if (!$this->validate($this->validation->getRules())) {
+
+          return redirect()->to(ADMIN.'edit_user/'.$id,)->with('validation', $this->validator)->with('page_title' ,"Users");
+        }     
+    
+    
+        $seletecd_role = "";
+       
+        $username = (string) $this->request->getPost('username');
+        $email = (string) $this->request->getPost('email');
+        $mobile = $this->request->getPost('mobile');
+        $seletecd_role = $this->request->getPost('user');
+      
+        if($seletecd_role == "accoun"){
+            $seletecd_role = ACCOUNTANT_USER;
+            
+        }else{
+            $seletecd_role = STUDENT_USER;
+        
+        }
+        
+        $user_obj = [
+            "username"=>$username,
+            "email"=>$email,
+            "mobile"=>$mobile,
+        ];
+        
+        if($this->usermodel->update($id , $user_obj)){
+          if($seletecd_role !== null){  
+           if(updateUserPermission($seletecd_role , $id)){
+            return redirect()->to(ADMIN.'user_table')->with('success', 'Successfully Role and User Updated');
+           }
+        }
+           return redirect()->to(ADMIN.'user_table')->with('success', 'Successfully  User Updated');
+        }
+
+    }
 
 
+    public function block_user() {
+     
+        $id = $this->request->getGet("id");
+  
+
+        $user = $this->usermodel->find($id);
+    
+        if ($user) {
+           
+            $new_status = $user['status'] == '1' ? '0' : '1';
+            $stat = $user['status'] == '1' ? 'Blocked' : 'Permitted';
+             
+            $data = [
+                "status" =>  $new_status
+            ];  
+            $this->usermodel->update($id, $data);
+            echo json_encode(['status' => 'success', 'message' => ''.$user['username'].' '.$stat.' successfully.']);
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'User not found.']);
+        }
+    }
+    
 
 }
 

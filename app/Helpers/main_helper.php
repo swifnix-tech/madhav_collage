@@ -3,6 +3,7 @@
 // 1 get_detail of app
 // 2 get User Permissions list;
 
+use CodeIgniter\Commands\Utilities\Publish;
 
 function getAppDetails($rows ,$filds){
  $model = db_connect();
@@ -50,5 +51,38 @@ function setUserPersmissions($role,$user_id){
   }
 
 
+  function getPermissionByUserId($user_id){
+    $db  = db_connect();
+    if($user_id === null){
+     return "";
+    }
+   $row  = $db->table("user_permission")->where("user",$user_id)->get()->getResultArray();
+
+   if($row !== null){
+       $user_permission_id = (int) $row[0]['user_group'];
+      // echo "<h1>$user_permission_id</h1>";
+       if($user_permission_id === ACCOUNTANT_USER){
+         return "accoun";
+       }else{
+        return "stud";
+       }
+   } 
+   return "";
+  }
+
+
+ function updateUserPermission($updated_role,$user_id){
+   if($updated_role && $user_id !== null){
+    $db  = db_connect();
+    $data = [
+      "user_group" => $updated_role
+    ];
+
+    if($db->table("user_permission")->where("user" , $user_id)->update($data)){
+     return true;   
+    }
+   }
+   return false;
+ } 
 
 ?>
